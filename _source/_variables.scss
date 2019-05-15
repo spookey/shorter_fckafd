@@ -7,11 +7,15 @@ $grey:         hsl(0, 0%, 48%);
 $grey-light:   hsl(0, 0%, 71%);
 $grey-lighter: hsl(0, 0%, 86%);
 
-$primary: #2A9FD6 !default;
-$primary-light: lighten($primary, 10);
-$link: #3273E2;
+$red: #ff0005;
 
-$white: #fff;
+$primary: $red;
+$primary-light: lighten($primary, 15);
+
+$danger: $red;
+$code: $red;
+
+$white: #ffffff;
 $white-ter:    #f5f5f5;
 
 $body-background-color: #000;
@@ -28,6 +32,7 @@ $text: $white;
 $text-light: lighten($text, 10);
 $text-strong: darken($text, 5);
 
+$link: $red;
 $link-hover: $primary-light;
 $link-focus: $primary-light;
 $link-active: $primary-light;
