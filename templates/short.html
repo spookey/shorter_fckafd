@@ -13,8 +13,8 @@
   <div class="content">
     {%- with jsdelay = (100 * short.delay) %}
     <progress
-      id="progress" class="progress is-danger is-small"
-      value="{{ jsdelay }}" min="0" max="{{ jsdelay }}"
+      id="progress" class="progress is-link is-small"
+      value="{{ jsdelay }}" max="{{ jsdelay }}"
     >
       {{ short.delay }} Sekunde{{ 'n' if short.delay != 1 }}
     </progress>
