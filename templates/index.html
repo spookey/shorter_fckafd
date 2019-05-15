@@ -1,6 +1,101 @@
 {% extends '_base.html' %}
-{% from '_code.html' import logo %}
+{% from '_code.html' import logo, sect %}
+
+{% macro _create_form() %}
+{% call() sect() %}
+<form action="{{ url_for('main.index') }}" method="post">
+  {{ form.csrf_token() if form.csrf_token }}
+
+  <div class="field">
+    <div class="control has-text-centered">
+      {{ form.target.label(class='label', text='Ziel') }}
+      {{ form.target(
+        class='input' ~ (' is-danger' if form.target.errors),
+        title='Zu kürzende Web-Adresse'
+      ) }}
+    </div>
+    {%- for error in form.target.errors %}
+    <p class="help is-danger">{{ error }}</p>
+    {%- endfor %}
+  </div>
+{#
+  <div class="field">
+    <div class="control has-text-centered">
+      {{ form.delay.label(class='label', text='Verzögerung') }}
+      <div class="select is-fullwidth {{ 'is-danger' if form.delay.errors }}">
+        {{ form.delay(
+          title='Verzögerung der Weiterleitung - in Sekunden'
+        ) }}
+      </div>
+    </div>
+    {%- for error in form.delay.errors %}
+    <p class="help is-danger">{{ error }}</p>
+    {%- endfor %}
+  </div>
+  </div>
+#}
+  <div class="field">
+    <div class="control has-text-right">
+      {{ form.submit(
+        class='button is-link',
+        value='Speichern',
+        title='Abschicken, verwursten lassen, smiley'
+      ) }}
+    </div>
+  </div>
+
+  <div class="field is-horizontal">
+    <div class="field-label is-normal"></div>
+    <div class="field-body">
+      <div class="field">
+        <div class="control">
+
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+{% endcall %}
+{% endmacro %}
+
+{% macro _display_form() %}
+{% call() sect() %}
+<div class="field has-addons">
+  <div class="control is-expanded">
+    {{ form.link(
+      class='input',
+      title='Der sehr gute Kurzlink'
+    ) }}
+  </div>
+  <div class="control">
+    {{ form.copy(
+      class='button is-link',
+      value='Kopieren',
+      title='In die Zwischenablage kopieren'
+    ) }}
+  </div>
+  {{ clipboard_copy(form.copy.id, form.link.id) }}
+</div>
+{% endcall %}
+{% endmacro %}
+
 
 {% block content %}
 {{ logo(href=url_for('main.index')) }}
+{% if link %}
+  {% call() sect(ccls='has-text-centered') %}
+    <div class="title">Fertig!</div>
+    <div class="subtitle">&hellip; er ist wirklich sehr kurz</div>
+    <div class="content">
+      <a href="{{ link.source }}">{{ link.target }}</a>
+    </div>
+  {% endcall %}
+  {{ _display_form() }}
+{% else %}
+  {% call() sect(ccls='has-text-centered') %}
+    <div class="title">Neuen Kurzlink erstellen</div>
+    <div class="subtitle">&hellip; er ist sehr kurz</div>
+  {% endcall %}
+  {{ _create_form() }}
+{% endif %}
 {% endblock %}
