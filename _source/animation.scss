@@ -1,0 +1,33 @@
+@-moz-keyframes logofade {
+  0%    { opacity: 0;}
+  100%  { opacity: 1;}
+}
+@-webkit-keyframes logofade {
+  0%    { opacity: 0;}
+  100%  { opacity: 1;}
+}
+@keyframes logofade {
+  0%    { opacity: 0;}
+  100%  { opacity: 1;}
+}
+
+svg .st1 {
+  -moz-animation: logofade 2s 1s 1 ease-out forwards;
+  -webkit-animation: logofade 2s 1s 1 ease-out forwards;
+  animation: logofade 2s 1s 1 ease-out forwards;
+  opacity: 0;
+}
+
+svg .st2 {
+  -moz-animation: logofade 3s 2s 1 ease-out forwards;
+  -webkit-animation: logofade 3s 2s 1 ease-out forwards;
+  animation: logofade 3s 2s 1 ease-out forwards;
+  opacity: 0;
+}
+
+svg .st3 {
+  -moz-animation: logofade 2s 3s 1 ease-out forwards;
+  -webkit-animation: logofade 2s 3s 1 ease-out forwards;
+  animation: logofade 2s 3s 1 ease-out forwards;
+  opacity: 0;
+}
