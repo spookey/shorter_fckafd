@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{%- if title and title != config.TITLE %}{{ title }} | {% endif %}{{ config.TITLE }}</title>
+    <link rel="icon" type="image/png" href="{{ url_for('side.favicon') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.min.css') }}">
+{% block meta %}{% endblock %}
+  </head>
+  <body>
+{% block content %}{% endblock %}
+  </body>
+</html>
