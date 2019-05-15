@@ -1,0 +1,13 @@
+{% macro sect() %}
+<div class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-8-desktop is-offset-2-desktop">
+        <div class="content">
+{{ caller() }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endmacro %}
