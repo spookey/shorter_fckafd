@@ -1,9 +1,34 @@
 {% extends '_base.html' %}
-{% from '_code.html' import logo %}
+{% from '_code.html' import logo, sect %}
 
 {% block meta %}
+{{ redirect_meta(short) }}
 {% endblock %}
 
 {% block content %}
 {{ logo() }}
+{% call() sect(ccls='has-text-centered') %}
+  <div class="title">Weiterleitung...</div>
+  <div class="subtitle">{{ redirect_link(short) }}</div>
+  <div class="content">
+    {%- with jsdelay = (100 * short.delay) %}
+    <progress
+      id="progress" class="progress is-danger is-small"
+      value="{{ jsdelay }}" min="0" max="{{ jsdelay }}"
+    >
+      {{ short.delay }} Sekunde{{ 'n' if short.delay != 1 }}
+    </progress>
+    {%- endwith %}
+  </div>
+{% endcall %}
+{{ redirect_script(short) }}
+<script>
+(function(bar) {
+  if (!bar) { return; }
+  function decr() { bar.value--; }
+  (function (val) {
+    while(val--) { setTimeout(decr, 10 * val); }
+  })(bar.value);
+})(document.getElementById('progress'));
+</script>
 {% endblock %}
