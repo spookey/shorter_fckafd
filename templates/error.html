@@ -1,7 +1,8 @@
 {% extends '_base.html' %}
-{% from '_code.html' import sect %}
+{% from '_code.html' import logo, sect %}
 
 {% block content %}
+{{ logo(href=url_for('main.index')) }}
 {% call() sect(ccls='has-text-centered') %}
   <div class="title">Falsch!</div>
   <div class="subtitle">{{ error.code }}</div>

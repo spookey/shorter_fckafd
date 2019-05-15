@@ -11,3 +11,19 @@
   </div>
 </div>
 {% endmacro %}
+
+{% macro logo(href=none) %}
+  {% call() sect() %}
+    <figure id="logo" class="image">
+{% include 'logo.svg' %}
+    </figure>
+    {% if href %}
+    <script>
+      (function(elem, href) {
+        if (!elem || !href) { return; }
+        elem.addEventListener('click', function() { window.location.assign(href); });
+      })(document.getElementById('logo'), '{{ href }}');
+    </script>
+    {% endif %}
+  {% endcall %}
+{% endmacro %}
