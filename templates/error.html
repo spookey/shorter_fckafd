@@ -1,4 +1,24 @@
 {% extends '_base.html' %}
+{% from '_code.html' import sect %}
 
 {% block content %}
+{% call() sect(ccls='has-text-centered') %}
+  <div class="title">Falsch!</div>
+  <div class="subtitle">{{ error.code }}</div>
+  {% if error.code == 404 %}
+  <div class="content">
+    <div>Leider nichts gefunden..</div>
+    <div>
+      Aber du kannst
+      <a href="{{ url_for('main.index') }}">
+        ganz einfach einen neuen Link
+      </a>
+      erstellen...
+    </div>
+  </div>
+  {% endif %}
+  <div class="content">
+    <blockquote>{{ error.description }}</blockquote>
+  </div>
+{% endcall %}
 {% endblock %}

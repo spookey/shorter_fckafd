@@ -1,9 +1,9 @@
-{% macro sect() %}
+{% macro sect(ccls=none) %}
 <div class="section">
   <div class="container">
     <div class="columns">
       <div class="column is-8-desktop is-offset-2-desktop">
-        <div class="content">
+        <div class="content{% if ccls %} {{ ccls }}{% endif %}">
 {{ caller() }}
         </div>
       </div>
