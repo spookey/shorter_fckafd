@@ -1,9 +1,11 @@
 {% extends '_base.html' %}
-{% from '_code.html' import logo, sect %}
+{% from '_code.html' import logo, section_content %}
 
 {% block content %}
+{% call() section_content() %}
 {{ logo(href=url_for('main.index')) }}
-{% call() sect(ccls='has-text-centered') %}
+{% endcall %}
+{% call() section_content(cls='has-text-centered') %}
   <div class="title">Falsch!</div>
   <div class="subtitle">{{ error.code }}</div>
   {% if error.code == 404 %}

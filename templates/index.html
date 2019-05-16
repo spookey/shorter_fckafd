@@ -1,8 +1,8 @@
 {% extends '_base.html' %}
-{% from '_code.html' import logo, sect %}
+{% from '_code.html' import logo, section_content %}
 
 {% macro _create_form() %}
-{% call() sect() %}
+{% call() section_content() %}
 <form action="{{ url_for('main.index') }}" method="post">
   {{ form.csrf_token() if form.csrf_token }}
 
@@ -59,7 +59,7 @@
 {% endmacro %}
 
 {% macro _display_form() %}
-{% call() sect() %}
+{% call() section_content() %}
 <div class="field has-addons">
   <div class="control is-expanded">
     {{ form.link(
@@ -81,9 +81,11 @@
 
 
 {% block content %}
+{% call() section_content() %}
 {{ logo(href=url_for('main.index')) }}
+{% endcall %}
 {% if link %}
-  {% call() sect(ccls='has-text-centered') %}
+  {% call() section_content(cls='has-text-centered') %}
     <div class="title">Fertig!</div>
     <div class="subtitle">&hellip; er ist wirklich sehr kurz</div>
     <div class="content">
@@ -92,7 +94,7 @@
   {% endcall %}
   {{ _display_form() }}
 {% else %}
-  {% call() sect(ccls='has-text-centered') %}
+  {% call() section_content(cls='has-text-centered') %}
     <div class="title">Neuen Kurzlink erstellen</div>
     <div class="subtitle">&hellip; er ist sehr kurz</div>
   {% endcall %}

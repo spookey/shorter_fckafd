@@ -1,13 +1,15 @@
 {% extends '_base.html' %}
-{% from '_code.html' import logo, sect %}
+{% from '_code.html' import logo, section_content %}
 
 {% block meta %}
 {{ redirect_meta(short) }}
 {% endblock %}
 
 {% block content %}
+{% call() section_content() %}
 {{ logo() }}
-{% call() sect(ccls='has-text-centered') %}
+{% endcall %}
+{% call() section_content(cls='has-text-centered') %}
   <div class="title">Weiterleitung...</div>
   <div class="subtitle">{{ redirect_link(short) }}</div>
   <div class="content">

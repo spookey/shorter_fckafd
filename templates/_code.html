@@ -1,29 +1,44 @@
-{% macro sect(ccls=none) %}
+{% macro section_container() %}
 <div class="section">
   <div class="container">
-    <div class="columns">
-      <div class="column is-8-desktop is-offset-2-desktop">
-        <div class="content{% if ccls %} {{ ccls }}{% endif %}">
 {{ caller() }}
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 {% endmacro %}
 
-{% macro logo(href=none) %}
-  {% call() sect() %}
-    <figure id="logo" class="image">
-{% include 'logo.svg' %}
-    </figure>
-    {% if href %}
-    <script>
-      (function(elem, href) {
-        if (!elem || !href) { return; }
-        elem.addEventListener('click', function() { window.location.assign(href); });
-      })(document.getElementById('logo'), '{{ href }}');
-    </script>
-    {% endif %}
+{% macro single_column() %}
+  {% with content = caller() %}
+  {% call() section_container() %}
+<div class="columns">
+  <div class="column is-8-desktop is-offset-2-desktop">
+{{ content }}
+  </div>
+</div>
   {% endcall %}
+  {% endwith %}
+{% endmacro %}
+
+{% macro section_content(cls=none) %}
+  {% with content = caller() %}
+  {% call() single_column() %}
+<div class="content{% if cls %} {{ cls }}{% endif %}">
+{{ content }}
+</div>
+  {% endcall %}
+  {% endwith %}
+{% endmacro %}
+
+
+{% macro logo(href=none) %}
+  <figure id="logo" class="image">
+{% include 'logo.svg' %}
+  </figure>
+  {% if href %}
+  <script>
+    (function(elem, href) {
+      if (!elem || !href) { return; }
+      elem.addEventListener('click', function() { window.location.assign(href); });
+    })(document.getElementById('logo'), '{{ href }}');
+  </script>
+  {% endif %}
 {% endmacro %}
