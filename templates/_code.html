@@ -6,23 +6,15 @@
 </div>
 {% endmacro %}
 
-{% macro single_column() %}
+{% macro section_content(cls=none) %}
   {% with content = caller() %}
   {% call() section_container() %}
 <div class="columns">
   <div class="column is-8-desktop is-offset-2-desktop">
+    <div class="content{% if cls %} {{ cls }}{% endif %}">
 {{ content }}
+    </div>
   </div>
-</div>
-  {% endcall %}
-  {% endwith %}
-{% endmacro %}
-
-{% macro section_content(cls=none) %}
-  {% with content = caller() %}
-  {% call() single_column() %}
-<div class="content{% if cls %} {{ cls }}{% endif %}">
-{{ content }}
 </div>
   {% endcall %}
   {% endwith %}
