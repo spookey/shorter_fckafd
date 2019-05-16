@@ -1,0 +1,19 @@
+{% extends '_base.html' %}
+{% from '_code.html' import logo, section_container %}
+
+{% block content %}
+{% call() section_container() %}
+<div class="columns">
+  <div class="column is-one-third">
+    <div class="content">
+{{ logo(href=url_for('main.index')) }}
+    </div>
+  </div>
+  <div class="column is-two-thirds">
+    <div class="content">
+{% block page_content %}{% endblock %}
+    </div>
+  </div>
+</div>
+{% endcall %}
+{% endblock %}
