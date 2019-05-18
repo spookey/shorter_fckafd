@@ -79,6 +79,113 @@
 {% endcall %}
 {% endmacro %}
 
+{% macro _social_buttons() %}
+  {% macro _cols(elems) %}
+  <div class="columns">
+  {% for elem in elems %}
+    <div class="column has-text-centered">
+      {{ elem }}
+    </div>
+  {% endfor %}
+  </div>
+  {% endmacro %}
+  {% macro _button(text, icon, href) %}
+  <a class="button is-medium" href="{{ href }}" target="_blank">
+    <span class="icon">
+      <i class="{{ icon }}"></i>
+    </span>
+    <span>{{ text }}</span>
+  </a>
+  {% endmacro %}
+
+{% call() column_content(cls='has-text-centered') %}
+  <div class="title">Teilen</div>
+{% endcall %}
+
+{% with (text, hash) = ('Ein sehr guter Link!', 'fckaf.de') %}
+  {{ _cols([
+    _button(
+      'Twitter', 'fab fa-twitter',
+      'https://twitter.com/intent/tweet?' ~ {
+        'url': link.source, 'text': text, 'hashtags': hash,
+      }|urlencode
+    ),
+    _button(
+      'Facebook', 'fab fa-facebook-f',
+      'https://www.facebook.com/sharer.php?' ~ {
+        'u': link.source,
+      }|urlencode
+    ),
+    _button(
+      'Pinterest', 'fab fa-pinterest-p',
+      'http://pinterest.com/pin/create/link/?' ~ {
+        'url': link.source,
+      }|urlencode
+    ),
+    _button(
+      'VK', 'fab fa-vk',
+      'http://vk.com/share.php?' ~ {
+        'url': link.source, 'title': text,
+      }|urlencode
+    ),
+  ]) }}
+
+  {{ _cols([
+    _button(
+      'Reddit', 'fab fa-reddit-alien',
+      'https://reddit.com/submit?' ~ {
+        'url': link.source, 'title': text,
+      }|urlencode
+    ),
+    _button(
+      'Digg', 'fab fa-digg',
+      'http://digg.com/submit?' ~ {
+        'url': link.source
+      }|urlencode
+    ),
+    _button(
+      'Tumblr', 'fab fa-tumblr',
+      'https://www.tumblr.com/widgets/share/tool?' ~ {
+        'canonicalUrl': link.source, 'title': text, 'tags': hash,
+      }|urlencode
+    ),
+    _button(
+      'Diaspora', 'fab fa-diaspora',
+      'https://share.diasporafoundation.org/?' ~ {
+        'url': link.source, 'title': text,
+      }|urlencode
+    ),
+  ]) }}
+
+  {{ _cols([
+    _button(
+      'Telegram', 'fab fa-telegram-plane',
+      'https://t.me/share/url?' ~ {
+        'url': link.source, 'text': text,
+      }|urlencode
+    ),
+    _button(
+      'WhatsApp', 'fab fa-whatsapp',
+      'https://wa.me/?' ~ {
+        'text': text ~' ' ~ link.source,
+      }|urlencode
+    ),
+    _button(
+      'Skype', 'fab fa-skype',
+      'https://web.skype.com/share?' ~ {
+        'url': link.source, 'text': text,
+      }|urlencode
+    ),
+    _button(
+      'Line', 'fab fa-line',
+      'https://lineit.line.me/share/ui?' ~ {
+        'url': link.source, 'text': text,
+      }|urlencode
+    ),
+  ]) }}
+{% endwith %}
+{% endmacro %}
+
 
 {% block content %}
 {% call() column_content() %}
@@ -93,6 +200,7 @@
     </div>
   {% endcall %}
   {{ _display_form() }}
+  {{ _social_buttons() }}
 {% else %}
   {% call() column_content(cls='has-text-centered') %}
     <div class="title">Neuen Kurzlink erstellen</div>
