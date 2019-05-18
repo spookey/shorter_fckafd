@@ -1,22 +1,12 @@
-{% macro section_container() %}
-<div class="section">
-  <div class="container">
-{{ caller() }}
-  </div>
-</div>
-{% endmacro %}
-
-{% macro section_content(cls=none) %}
+{% macro column_content(cls=none) %}
   {% with content = caller() %}
-  {% call() section_container() %}
 <div class="columns">
   <div class="column is-8-desktop is-offset-2-desktop">
     <div class="content{% if cls %} {{ cls }}{% endif %}">
-{{ content }}
+{{ caller() }}
     </div>
   </div>
 </div>
-  {% endcall %}
   {% endwith %}
 {% endmacro %}
 

@@ -1,8 +1,7 @@
 {% extends '_base.html' %}
-{% from '_code.html' import logo, section_container %}
+{% from '_code.html' import logo %}
 
 {% block content %}
-{% call() section_container() %}
 <div class="columns">
   <div class="column is-one-third">
     <div class="content">
@@ -15,5 +14,4 @@
     </div>
   </div>
 </div>
-{% endcall %}
 {% endblock %}
