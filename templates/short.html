@@ -10,8 +10,7 @@
 {{ logo() }}
 {% endcall %}
 {% call() column_content(cls='has-text-centered') %}
-  <div class="title">Weiterleitung...</div>
-  <div class="subtitle">{{ redirect_link(short) }}</div>
+  <div class="title">{{ redirect_link(short) }}</div>
   <div class="content">
     {%- with jsdelay = (100 * short.delay) %}
     <progress
