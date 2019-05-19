@@ -11,7 +11,9 @@
       {{ form.target.label(class='label', text='Zu kürzende Web-Adresse') }}
       {{ form.target(
         class='input' ~ (' is-danger' if form.target.errors),
-        title='Ziel der Weiterleitung'
+        title='Ziel der Weiterleitung',
+        type='url',
+        placeholder='https://www.die-partei.de',
       ) }}
     </div>
     {%- for error in form.target.errors %}
