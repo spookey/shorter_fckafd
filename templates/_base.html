@@ -7,7 +7,6 @@
     <title>{%- if title and title != config.TITLE %}{{ title }} | {% endif %}{{ config.TITLE }}</title>
     <link rel="icon" type="image/png" href="{{ url_for('side.favicon') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.min.css') }}">
-    <script defer src="{{ url_for('static', filename='fa.min.js') }}"></script>
 {% block head %}{% endblock %}
   </head>
   <body>
