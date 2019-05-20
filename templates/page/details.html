@@ -1,0 +1,47 @@
+{% extends 'page/_page.html' %}
+
+{% block page_content %}
+<h1 class="title">Wer? Wie? Wo? Wann? Was?</h1>
+
+<p>
+  <a href="{{ url_for('main.index') }}">fckaf.de</a> ist ein
+  <a href="https://de.wikipedia.org/wiki/Kurz-URL-Dienst">URL Shorter</a>.
+  Fütter diesen mit einer Web-Adresse, und du erhälst eine Kurz-URL.
+</p>
+<p>
+  Ein Aufruf der Kurz-URL leitet auf die ursprüngliche Web-Adresse weiter.
+</p>
+
+<h2 class="subtitle">Verlinkung</h2>
+<p>
+  <a href="{{ url_for('main.index') }}">fckaf.de</a> versucht die Platzierung
+  der verlinkten Seiten in Suchmaschinen nicht zu beeinflussen.
+</p>
+<p>
+  Hier kommen mehrere Techniken zum Einsatz:
+</p>
+<ul>
+  <li>
+    Der Kurz-Link wird mithilfe der
+    <a href="https://de.wikipedia.org/wiki/Robots_Exclusion_Standard">
+    robots.txt</a> blockiert, so dass Suchmaschinen diesen nicht verfolgen.
+  </li>
+  <li>
+    Die Ursprüngliche Seite wird nur mithilfe des
+    <a href="https://de.wikipedia.org/wiki/Nofollow">nofollow</a>
+    Attributs verlinkt.
+  </li>
+  <li>
+    Sollte dennoch eine Suchmaschine vorbei kommen, wird versucht dies zu
+    erkennen, und dann wird mit dem
+    <a href="https://de.wikipedia.org/wiki/HTTP-Statuscode#code403">
+    HTTP Statuscode 403</a> (Forbidden) geantwortet.
+  </li>
+  <li>
+    Die eigentliche Weiterleitung geschieht mithilfe von JavaScript, um
+    eine Übertragung des
+    <a href="https://de.wikipedia.org/wiki/Referrer">Referrers</a>
+    zu verhindern.
+  </li>
+</ul>
+{% endblock %}
