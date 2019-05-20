@@ -6,8 +6,8 @@
 {{ logo(href=url_for('main.index')) }}
 {% endcall %}
 {% call() column_content(cls='has-text-centered') %}
-  <div class="title">Falsch!</div>
-  <div class="subtitle">{{ error.code }}</div>
+  <h1 class="title">Falsch!</h1>
+  <h2 class="subtitle">{{ error.code }}</h2>
   {% if error.code == 404 %}
   <div class="content">
     <div>Leider nichts gefunden..</div>

@@ -197,20 +197,23 @@
 {% endcall %}
 {% if link %}
   {% call() column_content(cls='has-text-centered') %}
-    <div class="title">{{ link.source }}</div>
-    <div class="subtitle">
+    <h1 class="title">{{ link.source }}</h1>
+    <h2 class="subtitle">
       <a href="{{ link.source }}">{{ link.target }}</a>
-    </div>
+    </h2>
     <div class="content">
       Dies ist ein sehr guter Kurzlink.
     </div>
   {% endcall %}
   {{ _display_form() }}
   {% call() column_content(cls='has-text-centered') %}
-    <div class="title">Teilen</div>
+    <h1 class="title">Teilen</h1>
   {% endcall %}
   {{ _social_buttons() }}
 {% else %}
   {{ _create_form() }}
+  {% call() column_content(cls='has-text-centered') %}
+    <h1 class="title">fckaf.de</h1>
+  {% endcall %}
 {% endif %}
 {% endblock %}
