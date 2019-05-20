@@ -193,7 +193,7 @@
 
 {% block content %}
 {% call() column_content() %}
-{{ logo(href=url_for('main.index')) }}
+{{ logo(href=none if link else url_for('main.index')) }}
 {% endcall %}
 {% if link %}
   {% call() column_content(cls='has-text-centered') %}
