@@ -11,6 +11,18 @@
 <!--
 {% include 'message.txt' %}
 -->
+{% with description = 'Ein URL Shorter - Er ist sehr gut!' %}
+    <meta property="og:title" content="{{ config.TITLE }}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url_for('main.index', _external=true) }}">
+    <meta property="og:image" content="{{ url_for('side.favicon', _external=true) }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:locale" content="de_DE">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ config.TITLE }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image" content="{{ url_for('side.favicon', _external=true) }}">
+{% endwith %}
   </head>
   <body>
 <section class="section">
