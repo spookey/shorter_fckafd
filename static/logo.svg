@@ -5,6 +5,40 @@
   <style type="text/css">
     .st0{fill:#FFFFFF;}
     .st1{fill:#FF0000;}
+
+    @-moz-keyframes logofade {
+      0%    { opacity: 0;}
+      100%  { opacity: 1;}
+    }
+    @-webkit-keyframes logofade {
+      0%    { opacity: 0;}
+      100%  { opacity: 1;}
+    }
+    @keyframes logofade {
+      0%    { opacity: 0;}
+      100%  { opacity: 1;}
+    }
+
+    .st1 {
+      -moz-animation: logofade 2s 1s 1 ease-out forwards;
+      -webkit-animation: logofade 2s 1s 1 ease-out forwards;
+      animation: logofade 2s 1s 1 ease-out forwards;
+      opacity: 0;
+    }
+
+    .st2 {
+      -moz-animation: logofade 3s 2s 1 ease-out forwards;
+      -webkit-animation: logofade 3s 2s 1 ease-out forwards;
+      animation: logofade 3s 2s 1 ease-out forwards;
+      opacity: 0;
+    }
+
+    .st3 {
+      -moz-animation: logofade 2s 3s 1 ease-out forwards;
+      -webkit-animation: logofade 2s 3s 1 ease-out forwards;
+      animation: logofade 2s 3s 1 ease-out forwards;
+      opacity: 0;
+    }
   </style>
   <rect width="1024" height="768"/>
   <g class="st2">
