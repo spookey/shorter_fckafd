@@ -64,6 +64,11 @@
     </div>
   </div>
 </form>
+<script>
+(function(inpt) {
+  if (!inpt) { return; } inpt.focus();
+})(document.getElementById('{{ form.target.id }}'));
+</script>
 {% endcall %}
 {% endmacro %}
 
