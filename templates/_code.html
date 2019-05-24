@@ -13,10 +13,13 @@
 
 {% macro logo(href=none) %}
   <figure id="logo" class="image">
-    {% if href %}<a href="{{ href }}">{% endif %}
-<object data="{{ url_for('static', filename='logo.svg') }}" type="image/svg+xml">
-  <img src="{{ url_for('side.favicon') }}" alt="logo">
-</object>
+    {% if href %}<a href="{{ href }}" style="display: block;">{% endif %}
+      <object
+        data="{{ url_for('static', filename='logo.svg') }}" type="image/svg+xml"
+        {% if href %}style="pointer-events: none;"{% endif %}
+      >
+        <img src="{{ url_for('side.favicon') }}" alt="logo">
+      </object>
     {% if href %}</a>{% endif %}
   </figure>
 {% endmacro %}
