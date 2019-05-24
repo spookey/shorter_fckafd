@@ -18,7 +18,7 @@
         data="{{ url_for('static', filename='logo.svg') }}" type="image/svg+xml"
         {% if href %}style="pointer-events: none;"{% endif %}
       >
-        <img src="{{ url_for('side.favicon') }}" alt="logo">
+        <img src="{{ url_for('side.logo') }}" alt="logo">
       </object>
     {% if href %}</a>{% endif %}
   </figure>
