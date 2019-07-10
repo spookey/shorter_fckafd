@@ -11,10 +11,10 @@
 <!--
 {% include 'message.txt' %}
 -->
-{% with description = 'Ein URL Shorter - Er ist sehr gut!' %}
+{% with description = 'Ein URL Shorter — Er ist sehr gut!' %}
     <meta property="og:title" content="{{ config.TITLE }}">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url_for('main.index', _external=true) }}">
+    <meta property="og:url" content="{{ request.base_url }}">
     <meta property="og:image" content="{{ url_for('side.logo', _external=true) }}">
     <meta property="og:description" content="{{ description }}">
     <meta property="og:locale" content="de_DE">
