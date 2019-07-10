@@ -2,7 +2,9 @@
 {% from '_code.html' import column_content, logo %}
 
 {% block head %}
+{% if not is_socialagent(request.user_agent) %}
 {{ redirect_meta(short) }}
+{% endif %}
 {% endblock %}
 
 {% block content %}
