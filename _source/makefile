@@ -10,7 +10,7 @@ DIR_STATIC	:=	../static
 DIR_TEMP	:=	temp
 
 
-VER_BULMA	:=	0.7.4
+VER_BULMA	:=	0.7.5
 PRE_BULMA	:=	bulma-$(VER_BULMA)
 URL_BULMA	:=	https://github.com/jgthms/bulma/releases/download/$(VER_BULMA)/$(PRE_BULMA).zip
 TMP_BULMA	:=	$(DIR_TEMP)/$(PRE_BULMA).zip
@@ -29,6 +29,7 @@ build: $(TGT_BULMA)
 .PHONY: bulma
 bulma: $(TGT_BULMA)
 $(TGT_BULMA):
+	$(CMD_RM) -rvf $(DIR_TEMP) || true
 	$(CMD_MKDIR) -v "$(DIR_TEMP)"
 	$(CMD_CURL) -Lo "$(TMP_BULMA)" "$(URL_BULMA)"
 
