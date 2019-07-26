@@ -2,57 +2,52 @@
 {%- from 'plus/_func.html' import pagination %}
 
 {% macro heading() %}
+  {% macro order_urls(field) %}
+    <a href="{{ url_for(request.endpoint, page=1, field=field, sort='asc') }}">&#8593;</a>
+    <a href="{{ url_for(request.endpoint, page=1, field=field, sort='desc') }}">&#8595;</a>
+  {% endmacro %}
+
 <tr>
   <th>
     <abbr title="Primary ID">Prime</abbr>
-    <a href="{{ url_for(request.endpoint, page=1, field='prime', sort='asc') }}">&#8593;</a>
-    <a href="{{ url_for(request.endpoint, page=1, field='prime', sort='desc') }}">&#8595;</a>
+    {{ order_urls('prime') }}
   </th>
   <th>
     Symbol
-    <a href="{{ url_for(request.endpoint, page=1, field='symbol', sort='asc') }}">&#8593;</a>
-    <a href="{{ url_for(request.endpoint, page=1, field='symbol', sort='desc') }}">&#8595;</a>
+    {{ order_urls('symbol') }}
   </th>
   <th>
     Target
-    <a href="{{ url_for(request.endpoint, page=1, field='target', sort='asc') }}">&#8593;</a>
-    <a href="{{ url_for(request.endpoint, page=1, field='target', sort='desc') }}">&#8595;</a>
+    {{ order_urls('target') }}
   </th>
   <th>
     <abbr title="Forward delay in seconds">Delay</abbr>
-    <a href="{{ url_for(request.endpoint, page=1, field='delay', sort='asc') }}">&#8593;</a>
-    <a href="{{ url_for(request.endpoint, page=1, field='delay', sort='desc') }}">&#8595;</a>
+    {{ order_urls('delay') }}
   </th>
   <th>
     Active
-    <a href="{{ url_for(request.endpoint, page=1, field='active', sort='asc') }}">&#8593;</a>
-    <a href="{{ url_for(request.endpoint, page=1, field='active', sort='desc') }}">&#8595;</a>
+    {{ order_urls('active') }}
   </th>
   <th>
     <abbr title="Visit counter">Visited</abbr>
-    <a href="{{ url_for(request.endpoint, page=1, field='visited', sort='asc') }}">&#8593;</a>
-    <a href="{{ url_for(request.endpoint, page=1, field='visited', sort='desc') }}">&#8595;</a>
+    {{ order_urls('visited') }}
   </th>
   <th>
     <abbr title="Creation Date (UTC)">Created</abbr>
-    <a href="{{ url_for(request.endpoint, page=1, field='created', sort='asc') }}">&#8593;</a>
-    <a href="{{ url_for(request.endpoint, page=1, field='created', sort='desc') }}">&#8595;</a>
+    {{ order_urls('created') }}
   </th>
 </tr>
 {% endmacro %}
 
-{% macro element(elem) %}
-  {% macro textbool(val) %}
-    {{ ('yes' if val else 'no') }}
-  {% endmacro %}
+{% macro element(item) %}
 <tr>
-  <td>{{ elem.prime }}</td>
-  <td><a href="{{ url_for('main.short', symb=elem.symbol) }}">{{ elem.symbol }}</a></td>
-  <td>{{ elem.target|urlize(23, target='_blank', rel='nofollow') }}</td>
-  <td>{{ elem.delay }}</td>
-  <td>{{ textbool(elem.active) }}</td>
-  <td>{{ elem.visited }}</td>
-  <td>{{ elem.created }}</td>
+  <td>{{ item.prime }}</td>
+  <td><a href="{{ url_for('main.short', symb=item.symbol) }}">{{ item.symbol }}</a></td>
+  <td>{{ item.target|urlize(23, target='_blank', rel='nofollow') }}</td>
+  <td>{{ item.delay }}</td>
+  <td>{{ 'yes' if item.active else 'no' }}</td>
+  <td>{{ item.visited }}</td>
+  <td>{{ item.created }}</td>
 </tr>
 {% endmacro %}
 
@@ -69,8 +64,8 @@
             {{ heading() }}
           </thead>
           <tbody>
-            {% for elem in elements.items %}
-              {{ element(elem) }}
+            {% for item in elements.items %}
+              {{ element(item) }}
             {% endfor %}
           </tbody>
           <tfoot>
@@ -78,6 +73,8 @@
           </tfoot>
         </table>
       </div>
+      {% else  %}
+      <div>Nothing there!</div>
       {% endif %}
     </div>
   </div>
