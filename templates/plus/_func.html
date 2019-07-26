@@ -1,0 +1,73 @@
+{% macro pagination(pobj) %}
+  {%- macro page_url(page) -%}
+    {%- with args = request.view_args -%}
+    {%- set _ = args.update(page=page) -%}
+      {{ url_for(request.endpoint, **args) }}
+    {%- endwith -%}
+  {%- endmacro -%}
+
+  <nav class="pagination is-centered">
+    {% if pobj.page != 1 %}
+      <a
+        class="pagination-previous"
+        href="{{ page_url(pobj.prev_num) }}"
+      >Previous</a>
+    {% endif %}
+    {% if pobj.pages and pobj.page != pobj.pages %}
+      <a
+        class="pagination-next"
+        href="{{ page_url(pobj.next_num) }}"
+      >Next</a>
+    {% endif %}
+    <ul class="pagination-list">
+      {% if pobj.page != 1 %}
+        <li><a
+          class="pagination-link"
+          href="{{ page_url(1) }}"
+        >1</a></li>
+      {% endif %}
+      {% if pobj.has_prev and pobj.prev_num != 1 %}
+        {% if pobj.prev_num == 3 %}
+          <li><a
+            class="pagination-link"
+            href="{{ page_url(2) }}"
+          >2</a></li>
+        {% elif pobj.prev_num > 2 %}
+          <li>
+            <span class="pagination-ellipsis">&hellip;</span>
+          </li>
+        {% endif %}
+        <li><a
+          class="pagination-link"
+          href="{{ page_url(pobj.prev_num) }}"
+        >{{ pobj.prev_num }}</a></li>
+      {% endif %}
+      <li><a
+        class="pagination-link is-current"
+        href="{{ page_url(pobj.page) }}"
+      >{{ pobj.page }}</a></li>
+      {% if pobj.has_next and pobj.next_num != pobj.pages %}
+        <li><a
+          class="pagination-link"
+          href="{{ page_url(pobj.next_num) }}"
+        >{{ pobj.next_num }}</a></li>
+        {% if (pobj.pages - pobj.next_num) > 2 %}
+          <li>
+            <span class="pagination-ellipsis">&hellip;</span>
+          </li>
+        {% elif (pobj.pages - pobj.next_num) == 2 %}
+          <li><a
+            class="pagination-link"
+            href="{{ page_url(pobj.next_num + 1) }}"
+          >{{ pobj.next_num + 1 }}</a></li>
+        {% endif %}
+      {% endif %}
+      {% if pobj.pages and pobj.page != 0 and pobj.page != pobj.pages %}
+        <li><a
+          class="pagination-link"
+          href="{{ page_url(pobj.pages) }}"
+        >{{ pobj.pages }}</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endmacro %}
