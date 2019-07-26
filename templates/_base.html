@@ -8,9 +8,6 @@
     <link rel="icon" type="image/png" href="{{ url_for('side.logo') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.min.css') }}">
 {% block head %}{% endblock %}
-<!--
-{% include 'message.txt' %}
--->
 {% with description = 'Ein URL Shorter — Er ist sehr gut!' %}
     <meta name="description" content="{{ description }}">
     <meta name="twitter:card" content="summary_large_image">
