@@ -45,7 +45,7 @@
   <td><a href="{{ url_for('main.short', symb=item.symbol) }}">{{ item.symbol }}</a></td>
   <td>{{ item.target|urlize(23, target='_blank', rel='nofollow') }}</td>
   <td>{{ item.delay }}</td>
-  <td>{{ 'yes' if item.active else 'no' }}</td>
+  <td>{{ ('&#10003;' if item.active else '&#10005;')|safe }}</td>
   <td>{{ item.visited }}</td>
   <td>{{ item.created }}</td>
 </tr>
