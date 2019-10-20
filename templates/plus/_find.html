@@ -1,5 +1,5 @@
 {% macro findbox(form) %}
-<form action="{{ url_for('plus.find') }}" method="post">
+<form action="{{ url_for('plus.show') }}" method="post">
   {{ form.csrf_token() if form.csrf_token }}
 
   <div class="field has-addons">
