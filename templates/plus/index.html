@@ -1,4 +1,5 @@
 {%- extends '_base.html' %}
+{%- from 'plus/_find.html' import findbox %}
 
 {%- block content %}
 <div class="columns">
@@ -7,10 +8,18 @@
       <h2>Plus</h2>
       <div>
         <ul>
-          <li><a href="{{ url_for('plus.table') }}">Table</a></li>
+          <li><a href="{{ url_for('plus.table') }}">Tabelle</a></li>
         </ul>
       </div>
     </div>
+    {%- if form %}
+    <div class="content">
+      <h2>Suchen</h2>
+      <div>
+        {{ findbox(form) }}
+      </div>
+    </div>
+    {%- endif %}
   </div>
 </div>
 {%- endblock %}

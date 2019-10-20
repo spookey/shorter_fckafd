@@ -1,10 +1,11 @@
 {%- extends '_base.html' %}
+{%- from 'plus/_find.html' import findbox %}
 {%- from 'plus/_func.html' import pagination %}
 
 {% macro heading() %}
   {% macro order_urls(field) %}
-    <a href="{{ url_for(request.endpoint, page=1, field=field, sort='asc') }}">&#8593;</a>
-    <a href="{{ url_for(request.endpoint, page=1, field=field, sort='desc') }}">&#8595;</a>
+    <a href="{{ url_for(request.endpoint, page=1, field=field, sort='asc', **request.args) }}">&#8593;</a>
+    <a href="{{ url_for(request.endpoint, page=1, field=field, sort='desc', **request.args) }}">&#8595;</a>
   {% endmacro %}
 
 <tr>
@@ -57,6 +58,11 @@
   <div class="column is-fullwidth">
     <div class="content">
       <h2>{{ title }}</h2>
+      {%- if form %}
+      <div class="content">
+        {{ findbox(form) }}
+      </div>
+      {%- endif %}
       {% if elements and elements.items %}
       <div class="table-container">
         <table class="table">

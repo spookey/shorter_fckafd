@@ -2,6 +2,7 @@
   {%- macro page_url(page) -%}
     {%- with args = request.view_args -%}
     {%- set _ = args.update(page=page) -%}
+    {%- set _ = args.update(**request.args) -%}
       {{ url_for(request.endpoint, **args) }}
     {%- endwith -%}
   {%- endmacro -%}

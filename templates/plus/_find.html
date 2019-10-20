@@ -1,0 +1,22 @@
+{% macro findbox(form) %}
+<form action="{{ url_for('plus.find') }}" method="post">
+  {{ form.csrf_token() if form.csrf_token }}
+
+  <div class="field has-addons">
+    <div class="control is-expanded">
+      {{ form.term(
+        class='input',
+        placeholder='Suchen',
+        title='Der Suchbegriff'
+      ) }}
+    </div>
+    <div class="control">
+      {{ form.send(
+        class='button is-link',
+        value='Finden',
+        title='Wer suchet der findet!'
+      ) }}
+    </div>
+  </div>
+</form>
+{% endmacro %}
