@@ -125,5 +125,59 @@
       }|urlencode
     ),
   ]) }}
+
+  {{ _cols([
+    _button(
+      'Flipboard', 'fab fa-flipboard',
+      'https://share.flipboard.com/bookmarklet/popout?v=2' ~ {
+        'url': source, 'title': text,
+      }|urlencode
+    ),
+    _button(
+      'Blogger', 'fab fa-blogger-b',
+      'https://www.blogger.com/blog-this.g?' ~ {
+        'u': source, 'n': text, 't': text
+      }|urlencode
+    ),
+    _button(
+      'LinkedIn', 'fab fa-linkedin-in',
+      'https://www.linkedin.com/shareArticle?mini=true&' ~ {
+        'url': source, 'title': text,
+      }|urlencode
+    ) ,
+    _button(
+      'Xing', 'fab fa-xing',
+      'https://www.xing.com/spi/shares/new?' ~ {
+        'url': source,
+      }|urlencode
+    ),
+  ]) }}
+
+  {{ _cols([
+    _button(
+      'Evernote', 'fab fa-evernote',
+      'http://www.evernote.com/clip.action?' ~ {
+        'url': source, 'title': text,
+      }|urlencode
+    ),
+    _button(
+      'Buffer', 'fab fa-buffer',
+      'https://buffer.com/add?' ~ {
+        'url': source, 'text': text,
+      }|urlencode
+    ),
+    _button(
+      'Pocket', 'fab fa-get-pocket',
+      'https://getpocket.com/edit?'  ~ {
+        'url': source,
+      }|urlencode
+    ),
+    _button(
+      'Weibo', 'fab fa-weibo',
+      'http://service.weibo.com/share/share.php?'  ~ {
+        'url': source, 'title': text, 'appkey': '', 'pic': '', 'ralateUid': '',
+      }|urlencode
+    ),
+  ]) }}
 {% endwith %}
 {% endmacro %}
