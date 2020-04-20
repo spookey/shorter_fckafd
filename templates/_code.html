@@ -74,33 +74,6 @@
 
   {{ _cols([
     _button(
-      'Reddit', 'fab fa-reddit-alien',
-      'https://reddit.com/submit?' ~ {
-        'url': source, 'title': text,
-      }|urlencode
-    ),
-    _button(
-      'Digg', 'fab fa-digg',
-      'http://digg.com/submit?' ~ {
-        'url': source
-      }|urlencode
-    ),
-    _button(
-      'Tumblr', 'fab fa-tumblr',
-      'https://www.tumblr.com/widgets/share/tool?' ~ {
-        'canonicalUrl': source, 'title': text, 'tags': hash,
-      }|urlencode
-    ),
-    _button(
-      'Diaspora', 'fab fa-diaspora',
-      'https://share.diasporafoundation.org/?' ~ {
-        'url': source, 'title': text,
-      }|urlencode
-    ),
-  ]) }}
-
-  {{ _cols([
-    _button(
       'Telegram', 'fab fa-telegram-plane',
       'https://t.me/share/url?' ~ {
         'url': source, 'text': text,
@@ -122,6 +95,33 @@
       'Line', 'fab fa-line',
       'https://lineit.line.me/share/ui?' ~ {
         'url': source, 'text': text,
+      }|urlencode
+    ),
+  ]) }}
+
+  {{ _cols([
+    _button(
+      'Diaspora', 'fab fa-diaspora',
+      'https://share.diasporafoundation.org/?' ~ {
+        'url': source, 'title': text,
+      }|urlencode
+    ),
+    _button(
+      'Tumblr', 'fab fa-tumblr',
+      'https://www.tumblr.com/widgets/share/tool?' ~ {
+        'canonicalUrl': source, 'title': text, 'tags': hash,
+      }|urlencode
+    ),
+    _button(
+      'Reddit', 'fab fa-reddit-alien',
+      'https://reddit.com/submit?' ~ {
+        'url': source, 'title': text,
+      }|urlencode
+    ),
+    _button(
+      'Digg', 'fab fa-digg',
+      'http://digg.com/submit?' ~ {
+        'url': source
       }|urlencode
     ),
   ]) }}
