@@ -22,9 +22,10 @@
     <meta name="msapplication-config" content="{{ url_for('static', filename='browserconfig.xml') }}">
     <meta name="theme-color" content="#000000">
 {% block head %}{% endblock %}
-{% with description = 'Ein URL Shorter — Er ist sehr gut!' %}
+{% with symbol = ('(' ~ short.symbol ~ ')') if short and short.symbol else '' %}
+{% with description = ('Ein URL Shorter — Er ist sehr gut!' ~ ' ' ~ symbol)|trim %}
     <meta name="description" content="{{ description }}">
-    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:card" content="summary">
     <meta name="twitter:description" content="{{ description }}">
     <meta name="twitter:image" content="{{ url_for('side.logo', _external=true) }}">
     <meta name="twitter:title" content="{{ config.TITLE }}">
@@ -34,6 +35,7 @@
     <meta property="og:title" content="{{ config.TITLE }}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request.base_url }}">
+{% endwith %}
 {% endwith %}
   </head>
   <body>
