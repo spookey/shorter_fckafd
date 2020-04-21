@@ -13,7 +13,7 @@
 
 {% macro logo(href=none) %}
   <figure id="logo" class="image">
-    {% if href %}<a href="{{ href }}" style="display: block;">{% endif %}
+    {% if href %}<a rel="nofollow" href="{{ href }}" style="display: block;">{% endif %}
       <object
         data="{{ url_for('static', filename='logo.svg') }}" type="image/svg+xml"
         {% if href %}style="pointer-events: none;"{% endif %}
@@ -36,7 +36,7 @@
   </div>
   {% endmacro %}
   {% macro _button(text, icon, href) %}
-  <a class="button is-medium" href="{{ href }}" target="_blank">
+  <a class="button is-medium" rel="nofollow" href="{{ href }}" target="_blank">
     <span class="icon">
       <i class="{{ icon }}"></i>
     </span>
