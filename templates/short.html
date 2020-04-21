@@ -1,33 +1,31 @@
 {% extends '_base.html' %}
 {% from '_code.html' import column_content, logo, social_buttons %}
 
-{% macro is_sharing(spec) %}
-{% if ('stop' in request.args or 'share' in request.args) %}
-  {% if spec %}{{ caller() }}{% endif %}
-{% else %}
-  {% if not spec %}{{ caller() }}{% endif %}
-{% endif %}
-{% endmacro %}
+{% set share_mode = ('stop' in request.args or 'share' in request.args) %}
 
 
 {% block head %}
-{% if not is_socialagent(request.user_agent) %}
-  {% call() is_sharing(false) %}
-  {{ redirect_meta(short) }}
-  {% endcall %}
-{% endif %}
-{% call() is_sharing(true) %}
+{% if not share_mode %}
+  {% if not is_socialagent(request.user_agent) %}
+    {{ redirect_meta(short) }}
+  {% endif %}
+{% else %}
 <script defer src="{{ url_for('static', filename='fa.min.js') }}"></script>
-{% endcall %}
+{% endif %}
 {% endblock %}
 
 {% block content %}
+{% with share_url = url_for(
+  'main.short', symb=short.symbol, stop='', _external=true
+)|trim('=') %}
 {% call() column_content() %}
-{{ logo() }}
+{{ logo(none if share_mode else share_url) }}
 {% endcall %}
 {% call() column_content(cls='has-text-centered') %}
   <h1 class="title">{{ redirect_link(short) }}</h1>
+  {% if not share_mode %}
   <div class="content">
+    <a rel="nofollow" href="{{ share_url }}">
     {%- with jsdelay = (100 * short.delay) %}
     <progress
       id="progress" class="progress is-link is-small"
@@ -36,36 +34,18 @@
       {{ short.delay }} Sekunde{{ 'n' if short.delay != 1 }}
     </progress>
     {%- endwith %}
+    </a>
   </div>
+  {% endif %}
 {% endcall %}
+{% endwith %}
+
+{% if share_mode %}
 {% call() column_content(cls='has-text-centered') %}
   <h2 class="title">Teilen</h2>
-  {% call() is_sharing(false) %}
-  <h3 class="subtitle">
-    {% with url = url_for('main.short', symb=short.symbol, stop=[
-      'continue',
-      'dont-move',
-      'dont-panic',
-      'hammertime',
-      'immediately',
-      'it',
-      'moving',
-      'now',
-      'progress',
-      'right-there',
-      'running',
-      'sharing',
-      'stop',
-    ]|random, _external=true) %}
-    <a href="{{ url }}">{{ url }}</a>
-    {% endwith %}
-  </h3>
-  {% endcall %}
 {% endcall %}
-{% call() is_sharing(true) %}
 {{ social_buttons(url_for('main.short', symb=short.symbol, _external=true)) }}
-{% endcall %}
-{% call() is_sharing(false) %}
+{% else %}
 {{ redirect_script(short) }}
 <script>
 (function(bar) {
@@ -76,5 +56,5 @@
   })(bar.value);
 })(document.getElementById('progress'));
 </script>
-{% endcall %}
+{% endif %}
 {% endblock %}
