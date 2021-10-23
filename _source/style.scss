@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+
+@import "~bulmaswatch/cyborg/_variables.scss";
+
+$red: #ff0005;
+
+$primary: $red;
+$primary-light: lighten($primary, 15);
+
+$danger: $red;
+$code: $red;
+$link: $red;
+
+$footer-padding: 1rem 1.5rem;
+
+$section-padding: 1.5rem 1.5rem;
+$section-padding-medium: 3rem 1.5rem;
+$section-padding-large: 6rem 1.5rem;
+
+$input-color: $grey-darker;
+$input-placeholder-color: rgba($input-color, 0.5);
+
+@import "~bulma/bulma.sass";
+@import "~bulmaswatch/cyborg/_overrides.scss";

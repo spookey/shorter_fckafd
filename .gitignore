@@ -1,4 +1,2 @@
-/_source/.sass-cache
-/_source/bulma.sass
-/_source/sass
-/_source/temp
+node_modules/
+package-lock.json
