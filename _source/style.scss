@@ -1,12 +1,9 @@
 @charset "utf-8";
 
+$red: #ff0005;
+$primary: $red;
 
 @import "~bulmaswatch/cyborg/_variables.scss";
-
-$red: #ff0005;
-
-$primary: $red;
-$primary-light: lighten($primary, 15);
 
 $danger: $red;
 $code: $red;
